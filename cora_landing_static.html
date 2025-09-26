@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Cora｜oncogen.AI — 癌症照護平台</title>
+<style>
+  :root { --ink:#0f172a; --muted:#475569; }
+  body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,'Noto Sans TC','PingFang TC','Hiragino Sans','Microsoft JhengHei',sans-serif;color:var(--ink)}
+  .container{max-width:1200px;margin:0 auto;padding:0 20px}
+  header{position:sticky;top:0;background:#fff;backdrop-filter:blur(10px);border-bottom:1px solid #e5e7eb;z-index:10}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+  .nav .logo{height:34px}
+  .badge{background:#eef2ff;color:#3730a3;border-radius:999px;font-size:12px;padding:3px 8px;margin-left:6px}
+  .btn{display:inline-flex;align-items:center;gap:8px;border-radius:10px;border:1px solid #e5e7eb;padding:10px 14px;font-size:14px;text-decoration:none;color:var(--ink)}
+  .btn.primary{background:#0f172a;color:#fff;border-color:#0f172a}
+  .hero{padding:72px 0;display:grid;grid-template-columns:1.1fr 0.9fr;gap:40px;align-items:center}
+  @media (max-width:900px){.hero{grid-template-columns:1fr}}
+  .phone{width:320px;margin:0 auto;border:1px solid #e5e7eb;border-radius:36px;overflow:hidden;box-shadow:0 10px 30px rgba(2,8,23,.12)}
+  .phone .bar{height:36px;background:#0b1220}
+  .grid{display:grid;gap:20px}
+  .features{grid-template-columns:repeat(4,1fr)}
+  @media (max-width:1000px){.features{grid-template-columns:repeat(2,1fr)}}
+  .card{background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:18px;box-shadow:0 1px 3px rgba(2,8,23,.04)}
+  .muted{color:var(--muted)}
+  .section{padding:64px 0}
+  .modules{grid-template-columns:repeat(3,1fr)}
+  @media (max-width:1000px){.modules{grid-template-columns:1fr}}
+  .pricing{grid-template-columns:repeat(3,1fr)}
+  .ribbon{position:absolute;left:18px;top:-10px;background:#4f46e5;color:#fff;border-radius:999px;padding:2px 8px;font-size:12px}
+  footer{border-top:1px solid #e5e7eb;padding:40px 0;color:var(--muted)}
+  .langswitch{border-radius:10px;border:1px solid #e5e7eb;padding:8px 12px;background:#fff;cursor:pointer}
+</style>
+
+<!-- Tracking placeholders -->
+<!-- GA: replace GA_MEASUREMENT_ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config','GA_MEASUREMENT_ID');
+</script>
+<!-- Meta Pixel: replace PIXEL_ID -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','PIXEL_ID'); fbq('track','PageView');
+</script>
+
+<script>
+const dict={zh:{nav_features:'功能',nav_modules:'模組',nav_pricing:'方案與定價',nav_faq:'常見問題',badge:'癌症照護平台',hero_h1:'你的抗癌旅程 AI 夥伴',hero_p:'Agentic AI × 臨床知識 × 社群支持，將資訊化為可行動的照護。Cora 提供白話解釋、病程整合、試驗媒合與決策輔助。',cta_free:'免費開始',cta_modules:'查看模組',why:'為何選擇 Cora',modular:'模組化設計',modular_p:'依療程階段啟用所需功能，企業/院所可彈性組裝。',plans:'方案與定價',try:'立即體驗',pricing_note:'＊實際價格視地區與稅制調整。Cora 提供資訊與自我管理支援，不取代專業診斷與治療。',faq:'常見問題',q1:'Cora 會做診斷嗎？',a1:'不會。Cora 提供可信來源的資訊與自我管理工具，所有醫療決策請與醫療團隊討論。',q2:'我的資料如何被保護？',a2:'我們採用細粒度同意、加密與存取稽核；可隨時下載與撤回授權。',q3:'是否支援跨院就醫？',a3:'可透過 FHIR/HL7 串接與醫師共享連結（Pro/院所）支援跨院協作。',q4:'是否有企業/保險合作？',a4:'提供 B2B/B2B2C 方案（聯名專區、兌換碼、導流分析儀表板）。',footer:'Cora 提供資訊與陪伴，不取代專業醫療診斷與治療。緊急情況請立即就醫。',contact:'聯絡我們',privacy:'隱私權與同意',plan_free:'免費',plan_premium:'NT$199/月',plan_pro:'洽談',ribbon_starter:'入門',ribbon_pop:'推薦',ribbon_b2b:'B2B'},
+en:{nav_features:'Features',nav_modules:'Modules',nav_pricing:'Plans',nav_faq:'FAQ',badge:'Oncology Care Platform',hero_h1:'AI companion for every step of cancer care',hero_p:'Agentic AI + clinical knowledge + community. Turn information into action with plain explanations, integrated journey, trial matching and SDM support.',cta_free:'Start free',cta_modules:'View modules',why:'Why Cora',modular:'Modular Design',modular_p:'Activate modules by care stage; enterprises/hospitals can compose flexibly.',plans:'Plans & Pricing',try:'Try now',pricing_note:'* Indicative pricing; varies by region & tax. Cora provides information & self‑management support, not medical diagnosis or treatment.',faq:'FAQ',q1:'Does Cora diagnose?',a1:'No. Cora offers trusted information and self‑management tools. Always consult clinicians for medical decisions.',q2:'How is my data protected?',a2:'Granular consent, encryption and access audit; you may download or revoke access any time.',q3:'Cross‑facility support?',a3:'Via FHIR/HL7 integration and clinician sharing (Pro/enterprise).',q4:'Enterprise/Insurance?',a4:'B2B/B2B2C options (co‑branded space, redemption codes, referral analytics).',footer:'Cora provides information & companionship; not a substitute for professional diagnosis or treatment. In emergencies, seek care immediately.',contact:'Contact',privacy:'Privacy & Consent',plan_free:'Free',plan_premium:'US$6.99/mo*',plan_pro:'Contact',ribbon_starter:'Starter',ribbon_pop:'Most Popular',ribbon_b2b:'B2B'}};
+function i18n(lang){
+  const d=dict[lang];
+  document.querySelectorAll('[data-i]').forEach(el=>el.textContent=d[el.getAttribute('data-i')]);
+  document.documentElement.lang=(lang==='zh'?'zh-Hant':'en');
+}
+window.addEventListener('DOMContentLoaded',()=>{
+  const defaultLang=(navigator.language||'zh').toLowerCase().startsWith('zh')?'zh':'en';
+  i18n(defaultLang);
+  document.getElementById('lang').addEventListener('click',()=>{
+    const cur=document.documentElement.lang==='zh-Hant'?'zh':'en';
+    i18n(cur==='zh'?'en':'zh');
+  });
+});
+</script>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <div class="left">
+      <img class="logo" src="Logo_去背.png" alt="oncogen.AI logo"/>
+      <span class="badge" data-i="badge">癌症照護平台</span>
+    </div>
+    <nav class="muted" style="display:flex;gap:20px">
+      <a href="#features" data-i="nav_features">功能</a>
+      <a href="#modules" data-i="nav_modules">模組</a>
+      <a href="#pricing" data-i="nav_pricing">方案與定價</a>
+      <a href="#faq" data-i="nav_faq">常見問題</a>
+    </nav>
+    <button id="lang" class="langswitch">EN / 中文</button>
+  </div>
+</header>
+
+<section class="container hero">
+  <div>
+    <h1 data-i="hero_h1">你的抗癌旅程 AI 夥伴</h1>
+    <p class="muted" data-i="hero_p">Agentic AI × 臨床知識 × 社群支持…</p>
+    <div style="display:flex;gap:12px;margin-top:12px">
+      <a class="btn primary" href="#pricing" data-i="cta_free">免費開始</a>
+      <a class="btn" href="#modules" data-i="cta_modules">查看模組</a>
+    </div>
+  </div>
+  <div>
+    <div class="phone"><div class="bar"></div><img src="mock_screenshot.png" alt="App screenshot" style="display:block;width:100%"/></div>
+  </div>
+</section>
+
+<section id="features" class="section">
+  <div class="container">
+    <h2 style="font-size:28px;font-weight:700" data-i="why">為何選擇 Cora</h2>
+    <div class="grid features" style="margin-top:18px">
+      <div class="card"><div style="font-weight:600">Agentic AI</div><p class="muted">Plain language guidance</p></div>
+      <div class="card"><div style="font-weight:600">Caregiver Sharing</div><p class="muted">Collaborate under consent</p></div>
+      <div class="card"><div style="font-weight:600">Privacy & Compliance</div><p class="muted">Granular consent</p></div>
+      <div class="card"><div style="font-weight:600">Journey & Tracking</div><p class="muted">1‑page visit brief</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="modules" class="section" style="background:#f8fafc">
+  <div class="container">
+    <h2 style="font-size:28px;font-weight:700" data-i="modular">模組化設計</h2>
+    <p class="muted" data-i="modular_p">依療程階段啟用所需功能，企業/院所可彈性組裝。</p>
+    <div id="modules-list" class="grid modules" style="margin-top:18px">
+      <div class="card"><div style="font-weight:600">AI Chat Pro+</div><ul class="muted"><li>指南比對與摘要</li><li>報告抽取</li><li>多語支援</li></ul></div>
+      <div class="card"><div style="font-weight:600">Patient Journey+</div><ul class="muted"><li>日誌提醒</li><li>紅旗分流</li><li>就醫摘要</li></ul></div>
+      <div class="card"><div style="font-weight:600">Trial Match Pro</div><ul class="muted"><li>條件搜尋</li><li>提醒</li><li>Dashboard</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing" class="section">
+  <div class="container">
+    <h2 style="font-size:28px;font-weight:700" data-i="plans">方案與定價</h2>
+    <div class="grid pricing" style="margin-top:18px;gap:20px">
+      <div class="card" data-plan="0"><div class="ribbon" data-i="ribbon_starter">入門</div><div style="font-weight:600">Free</div><div class="price" style="font-size:30px;font-weight:800" data-i="plan_free">免費</div><ul class="muted"><li>AI Chat 基礎</li><li>Patient Journey 基礎</li><li>社群與閱讀</li></ul><a class="btn" href="#" data-i="try">立即體驗</a></div>
+      <div class="card" data-plan="1" style="position:relative;box-shadow:0 0 0 2px #4f46e5"><div class="ribbon" data-i="ribbon_pop">推薦</div><div style="font-weight:600">Premium</div><div class="price" style="font-size:30px;font-weight:800" data-i="plan_premium">NT$199/月</div><ul class="muted"><li>AI Chat Pro+</li><li>Journey+ 與匯出</li><li>Caregiver 2–5人共享</li><li>Trial Match 追蹤提醒</li></ul><a class="btn primary" href="#" data-i="try">立即體驗</a></div>
+      <div class="card" data-plan="2"><div class="ribbon" data-i="ribbon_b2b">B2B</div><div style="font-weight:600">Pro（醫院）</div><div class="price" style="font-size:30px;font-weight:800" data-i="plan_pro">洽談</div><ul class="muted"><li>FHIR/HL7 串接</li><li>醫師共享連結</li><li>機構儀表板</li></ul><a class="btn" href="#" data-i="try">立即體驗</a></div>
+    </div>
+    <p class="muted" style="font-size:12px;margin-top:10px" data-i="pricing_note">＊實際價格視地區與稅制調整…</p>
+  </div>
+</section>
+
+<section id="faq" class="section" style="background:#f8fafc">
+  <div class="container">
+    <h2 style="font-size:28px;font-weight:700">FAQ</h2>
+    <div class="grid" style="grid-template-columns:repeat(2,1fr);gap:20px;margin-top:12px">
+      <div><div style="font-weight:600" data-i="q1">Cora 會做診斷嗎？</div><p class="muted" data-i="a1">不會…</p></div>
+      <div><div style="font-weight:600" data-i="q2">我的資料如何被保護？</div><p class="muted" data-i="a2">加密與存取稽核…</p></div>
+      <div><div style="font-weight:600" data-i="q3">是否支援跨院就醫？</div><p class="muted" data-i="a3">FHIR/HL7…</p></div>
+      <div><div style="font-weight:600" data-i="q4">是否有企業/保險合作？</div><p class="muted" data-i="a4">B2B/B2B2C …</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container" style="display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap">
+    <div>
+      <img class="logo" src="Logo_去背.png" alt="oncogen.AI logo" style="height:28px;vertical-align:middle;margin-right:8px"/><strong>oncogen.AI</strong>
+      <p class="muted" data-i="footer" style="max-width:720px;margin-top:8px">Cora 提供資訊與陪伴…</p>
+    </div>
+    <div>
+      <a href="#" class="muted" style="margin-right:12px" data-i="contact">聯絡我們</a>
+      <a href="#" class="muted" data-i="privacy">隱私權與同意</a>
+    </div>
+  </div>
+</footer>
+</body></html>
